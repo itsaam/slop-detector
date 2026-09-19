@@ -1,0 +1,11 @@
+{
+  "name": "slop-detector",
+  "version": "0.1.5",
+  "private": true,
+  "description": "Text-based slop filtering for X with Jev.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node tests/validate-extension.mjs && node tests/background.test.mjs && node tests/options.test.mjs",
+    "package": "node scripts/package.mjs"
+  }
+}

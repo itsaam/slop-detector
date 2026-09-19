@@ -1,0 +1,216 @@
+.jev-result-slot {
+  --jev-red: #f4212e;
+  --jev-green: #087a50;
+  display: flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 12px 8px 52px;
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  color: rgb(83, 100, 113);
+}
+
+.jev-result-slot--inline {
+  margin-left: 0;
+}
+
+.jev-badge {
+  box-sizing: border-box;
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  color: inherit;
+  font: inherit;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+button.jev-badge,
+.jev-reveal {
+  cursor: pointer;
+}
+
+button.jev-badge:focus-visible,
+.jev-reveal:focus-visible {
+  outline: 2px solid rgb(29, 155, 240);
+  outline-offset: 2px;
+}
+
+.jev-badge--clean {
+  color: var(--jev-green);
+  animation: jev-soft-arrival 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.jev-badge--loading {
+  opacity: 0.72;
+}
+
+.jev-badge--loading .jev-dot {
+  animation: jev-pulse 900ms ease-in-out infinite;
+}
+
+.jev-badge--action {
+  color: #0c7abf;
+}
+
+.jev-badge--action:hover,
+.jev-badge--error:hover,
+.jev-reveal:hover {
+  background: color-mix(in srgb, currentColor 13%, transparent);
+}
+
+.jev-badge--error {
+  color: #a94700;
+}
+
+.jev-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 13%, transparent);
+}
+
+.jev-stamp {
+  --jev-red: #f4212e;
+  box-sizing: border-box;
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  position: absolute;
+  z-index: 9;
+  isolation: isolate;
+  display: inline-flex;
+  top: 50%;
+  left: 50%;
+  width: min(76%, 430px);
+  min-width: 0;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 22px);
+  padding: clamp(12px, 2vw, 18px) clamp(18px, 4vw, 34px);
+  border: clamp(4px, 0.7vw, 7px) solid currentColor;
+  border-radius: 8px;
+  color: var(--jev-red);
+  background: color-mix(in srgb, var(--jev-red) 5%, transparent);
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, currentColor 48%, transparent),
+    0 8px 24px color-mix(in srgb, currentColor 20%, transparent);
+  transform: translate(-50%, -50%) rotate(-7deg);
+  transform-origin: center;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  animation: jev-stamp-in 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.jev-stamp::after {
+  position: absolute;
+  z-index: -1;
+  inset: 5px;
+  border: 2px dashed color-mix(in srgb, currentColor 58%, transparent);
+  border-radius: 3px;
+  content: "";
+  opacity: 0.66;
+}
+
+.jev-stamp strong {
+  font-size: clamp(42px, 9vw, 72px);
+  font-weight: 900;
+  letter-spacing: 0.065em;
+  line-height: 0.82;
+}
+
+article.jev-slop-marked {
+  position: relative !important;
+}
+
+.jev-reveal {
+  min-height: 26px;
+  padding: 4px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 650;
+}
+
+article.jev-slop-blurred:not([data-jev-revealed="true"]) .jev-blur-target {
+  filter: blur(7px);
+  opacity: 0.62;
+  transition: filter 180ms ease-out, opacity 180ms ease-out;
+}
+
+article.jev-slop-blurred[data-jev-revealed="true"] .jev-blur-target {
+  filter: none;
+  opacity: 1;
+}
+
+@keyframes jev-stamp-in {
+  0% {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translate(-50%, calc(-50% - 38px)) rotate(-13deg) scale(1.7);
+  }
+  52% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -47%) rotate(-7deg) scale(0.94);
+  }
+  72% {
+    transform: translate(-50%, -51%) rotate(-7deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-7deg) scale(1);
+  }
+}
+
+@keyframes jev-soft-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes jev-pulse {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(0.82);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .jev-result-slot {
+    color: rgb(139, 152, 165);
+  }
+
+  .jev-badge--clean {
+    color: #32d195;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jev-stamp,
+  .jev-badge--clean,
+  .jev-badge--loading .jev-dot {
+    animation: none;
+  }
+}

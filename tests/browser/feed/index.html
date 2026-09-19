@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slop Detector visual test</title>
+    <link rel="stylesheet" href="../../../src/content.css" />
+    <style>
+      :root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #000; color: #e7e9ea; }
+      main { width: min(600px, 100%); margin: 0 auto; border-inline: 1px solid #2f3336; }
+      article { padding: 14px 16px 8px; border-bottom: 1px solid #2f3336; }
+      .post { display: grid; grid-template-columns: 42px 1fr; gap: 10px; }
+      .post > div { position: relative; }
+      .actions-wrap { position: relative; }
+      [data-testid="videoPlayer"] { display: grid; place-items: center; height: 240px; margin-bottom: 10px; background: #394955; border-radius: 14px; }
+      .avatar { width: 42px; height: 42px; border-radius: 50%; background: #2f3336; }
+      .meta { color: #8b98a5; font-size: 14px; }
+      .meta strong { color: #e7e9ea; }
+      [data-testid="tweetText"] { margin: 4px 0 12px; line-height: 1.42; }
+      [role="group"] { display: flex; justify-content: space-between; margin-top: 3px; color: #8b98a5; font-size: 13px; }
+      .fixture-title { padding: 14px 16px; border-bottom: 1px solid #2f3336; font-size: 20px; font-weight: 800; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="fixture-title">Pour vous</div>
+      <p style="padding: 0 16px; font-size: 12px; color: #8b98a5">Test local : vrai rendu et logique, réponses API simulées. <span id="fixture-calls">0 appel simulé</span></p>
+      <label style="display:block;padding:8px 16px"><input id="fixture-context-guard" type="checkbox"> Autoriser « Contexte insuffisant » (test)</label>
+      <article data-testid="tweet">
+        <div class="post">
+          <div class="avatar"></div>
+          <div>
+            <div class="meta"><strong>Maya Chen</strong> · @mayac · <a href="/mayac/status/11111"><time>2 h</time></a></div>
+            <div data-testid="tweetText">J’ai comparé trois stratégies de cache sur notre API. Le LRU simple a réduit la latence p95 de 38 % sans augmenter la mémoire au-delà de 120 Mo.</div>
+            <div role="group"><button data-testid="reply">Répondre</button><span>12</span><span>48</span><span>3,1 k</span></div>
+          </div>
+        </div>
+      </article>
+      <article data-testid="tweet">
+        <div class="post">
+          <div class="avatar"></div>
+          <div>
+            <div class="meta"><strong>Daily Growth</strong> · @mindset · <a href="/mindset/status/22222"><time>4 h</time></a></div>
+            <div data-testid="tweetText">10 habits that will change your life forever. Number 7 will surprise you. Read this before it is too late.</div>
+            <div data-testid="videoPlayer">Vidéo témoin — aucune analyse du média</div>
+            <div class="actions-wrap"><div role="group"><button data-testid="reply">Répondre</button><span>904</span><span>8 k</span><span>1,2 M</span></div></div>
+          </div>
+        </div>
+      </article>
+      <article data-testid="tweet">
+        <div class="post">
+          <div class="avatar"></div>
+          <div>
+            <div class="meta"><strong>OTP LoL · exemple fourni</strong> · <a href="/OTP_LoL/status/33333"><time>3 h</time></a></div>
+            <div data-testid="tweetText">Bonne technique pour éviter l’amende</div>
+            <div data-testid="videoPlayer">Vidéo non analysée</div>
+            <div class="actions-wrap"><div role="group"><button data-testid="reply">Répondre</button><span>1,8 k</span></div></div>
+          </div>
+        </div>
+      </article>
+      <article data-testid="tweet">
+        <div class="post">
+          <div class="avatar"></div>
+          <div>
+            <div class="meta"><strong>Réaction · exemple fourni</strong> · <a href="/example/status/44444"><time>14 h</time></a></div>
+            <div data-testid="tweetText">AI almost threw us in WW3...</div>
+            <div data-testid="videoPlayer">Vidéo non analysée</div>
+            <div role="link"><div data-testid="tweetText">U.S. military almost started war with China due to A.I. error — CNN</div></div>
+            <div class="actions-wrap"><div role="group"><button data-testid="reply">Répondre</button><span>50 k</span></div></div>
+          </div>
+        </div>
+      </article>
+    </main>
+    <script src="../../../src/shared.js"></script>
+    <script src="mock-extension.js"></script>
+    <script src="../../../src/background.js"></script>
+    <script src="../../../src/content.js"></script>
+  </body>
+</html>

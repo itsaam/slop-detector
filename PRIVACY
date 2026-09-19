@@ -1,0 +1,87 @@
+Slop Detector — Privacy policy
+Effective date: 19 September 2026
+Maintainer: itsaam — https://github.com/itsaam
+
+Purpose
+
+Slop Detector classifies the text of posts displayed on X and Twitter according
+to the definition configured by the user. It optionally blurs flagged posts.
+It is not an image or video analysis service and is not affiliated with X.
+
+Data processed in your browser
+
+The content script reads displayed post text, quoted text, post identifiers,
+and flags indicating attached media or truncated text. It also recognizes
+supported platform "Made with AI" disclosures. These readings support only
+the visible classification and filtering features on x.com and twitter.com.
+
+The extension does not access direct-message bodies, cookies, passwords,
+browsing history from other websites, or the contents of images and videos.
+Text inside a post may itself contain names, links, or personal information.
+Protected posts visible to you are not automatically excluded. Do not enable
+remote analysis if you do not want such displayed content sent to a provider.
+
+Remote analysis and consent
+
+Remote analysis is disabled by default, including for existing settings that
+do not record consent. To enable it, read the disclosure in the popup, activate
+the remote-analysis switch, and save. You can turn it off and save at any time.
+
+When enabled, post text, quoted text, media/truncation flags, your custom
+definition, and model instructions are sent over HTTPS to your chosen provider:
+
+- TypeSafe: api.typesafe.ai, for Jev inference.
+- OpenRouter: openrouter.ai, which routes the Jev request to TypeSafe.
+
+Post identifiers are used locally for caching, not included as a separate
+field in inference requests. Images and videos are not uploaded. Like any
+HTTPS service, the selected provider can receive connection metadata such
+as your IP address. Your API key authenticates only with its matching provider.
+
+The Test button sends a fixed example and your configured definition to the
+selected provider. It does not send a post from your timeline. This user-initiated
+test can be used without enabling ongoing remote analysis and may incur a charge.
+
+Disabling analysis stops new post requests. A request already transmitted
+cannot be withdrawn from the provider. Supported platform AI labels are
+processed locally and do not require remote-analysis consent or an API key.
+
+Provider handling and retention are governed by your account settings and
+their policies. The extension does not promise zero provider retention or
+that the provider will not use submitted data for purposes described in its
+own policy. Review these before enabling analysis:
+https://typesafe.ai/legal/privacy-policy
+https://openrouter.ai/privacy
+
+Local storage and deletion
+
+API keys, your preferences, and analysis results are stored in the extension's
+chrome.storage.local area. They are not synchronized through chrome.storage.sync.
+This is browser-local storage, not an operating-system password vault.
+Content scripts cannot read this storage; trusted extension pages and the
+service worker use it to provide the configured features.
+
+The persistent result cache holds up to 1,000 entries. Entries contain a post
+identifier and configuration/content fingerprint in the cache key, plus score,
+model, provider, and timestamps; raw post text is not stored in that cache.
+There is no time-based expiry. Older entries are evicted when the bound is hit.
+Your custom definition is stored as a preference.
+
+Remove a saved API key by clearing its field and saving. Uninstalling the
+extension removes its browser-local storage. This does not delete copies
+already received by a provider; address those requests to that provider.
+
+Limited use
+
+Slop Detector uses the data described above only to provide its classification
+and filtering features. It does not sell data, use it for advertising, collect
+analytics, or send it to a maintainer-operated server. The maintainer does not
+receive or read your posts or API keys. Transfers to the selected inference
+provider are necessary for the remote feature that you explicitly enable.
+This use is intended to comply with the Chrome Web Store User Data Policy,
+including its Limited Use requirements.
+
+Contact
+
+Questions and deletion guidance: https://github.com/itsaam/slop-detector/issues
+Issues are public. Do not include API keys, private posts, or personal data.

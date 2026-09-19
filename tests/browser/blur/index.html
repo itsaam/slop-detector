@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnostic du flou dynamique</title>
+  <link rel="stylesheet" href="../../../src/content.css">
+  <style>
+    :root { color-scheme: dark; font: 15px/1.5 system-ui; color: #e7e9ea; background: #000; }
+    body { max-width: 680px; margin: 20px auto; padding: 16px; }
+    article { position: relative; border: 1px solid #2f3336; padding: 20px; }
+    [data-testid="tweetPhoto"] { background: #263541; padding: 70px 20px; font-size: 28px; text-align: center; }
+    button { padding: 8px 14px; cursor: pointer; margin: 3px; }
+    a { color: #8b98a5; } #result { white-space: pre-wrap; }
+    #regressions { max-height: 160px; overflow: auto; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Diagnostic : remplacement du média dans le fil</h1>
+  <p>Content script livré, observers natifs. Score API simulé à 90 %, flou activé, aucun appel externe.</p>
+  <button id="run-tests">Vérifier le correctif du flou</button>
+  <pre id="regressions">Suite de régression prête.</pre>
+  <button id="replace">Remplacer le média (chargement X)</button>
+  <button id="open">Ouvrir le tweet (nouveau DOM)</button>
+  <button id="back">Retour au fil (DOM conservé)</button>
+  <h2 id="route">Fil</h2>
+  <main id="post"></main>
+  <pre id="result">En attente…</pre>
+  <script src="repro.js"></script>
+  <script src="../../../src/content.js"></script>
+  <script src="regression.js"></script>
+</body>
+</html>
