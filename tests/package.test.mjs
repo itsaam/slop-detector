@@ -48,4 +48,16 @@ for (const [size, path] of Object.entries(manifest.icons)) {
   assert.equal(png.readUInt32BE(20), Number(size));
 }
 assert.ok(!expected.some((path) => /tests|README|PRIVACY|store|\.git/.test(path)));
-console.log(`PASS: Reproducible ZIP, ${expected.length} runtime files, root manifest, matching sources and PNG icon dimensions.`);
+
+for (const [path, width, height] of [
+  ['store/promo-440x280.png', 440, 280],
+  ['store/screenshot-640x400.png', 640, 400],
+]) {
+  const png = readFileSync(new URL(`../${path}`, import.meta.url));
+  assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', `${path}: PNG required`);
+  assert.equal(png.readUInt32BE(16), width, `${path}: incorrect width`);
+  assert.equal(png.readUInt32BE(20), height, `${path}: incorrect height`);
+  assert.equal(png[24], 8, `${path}: 8 bits per channel required`);
+  assert.equal(png[25], 2, `${path}: RGB without an alpha channel required`);
+}
+console.log(`PASS: Reproducible ZIP, ${expected.length} runtime files, root manifest, matching sources, icon dimensions and 24-bit RGB store images.`);

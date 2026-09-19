@@ -1,6 +1,5 @@
 # Slop Detector
 
-[![Checks](https://github.com/itsaam/slop-detector/actions/workflows/checks.yml/badge.svg)](https://github.com/itsaam/slop-detector/actions/workflows/checks.yml)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-30363d?style=flat)
 ![Chrome 120+](https://img.shields.io/badge/Chrome-120%2B-30363d?style=flat)
 
@@ -39,6 +38,8 @@ See [PRIVACY](PRIVACY) for the full data handling details. Do not enable remote 
 ## Development
 
 Plain JavaScript, HTML, and CSS. No runtime dependencies or build step. Node.js 22 or later is used for checks and packaging.
+
+Checks run locally; this repository does not use GitHub Actions.
 
 ```sh
 npm test
