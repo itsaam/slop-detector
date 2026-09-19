@@ -1,0 +1,53 @@
+Slop Detector for X
+
+Description courte
+Repérez les posts génériques et l’engagement-bait sur X avec Jev. Clé API personnelle requise pour l’analyse du texte.
+
+Description
+Slop Detector ajoute un indicateur aux posts affichés sur X : un badge « Not slop » avec un score estimé, ou un tampon rouge SLOP. Vous pouvez choisir de flouter les posts signalés et les révéler avec le bouton Afficher.
+
+Réglez le seuil et votre définition du slop depuis le popup de l’extension. Le flou suit les images et vidéos chargées dynamiquement dans le fil. Les résultats sont mis en cache pour éviter de refaire les mêmes appels.
+
+L’analyse du texte utilise le modèle Jev avec votre propre clé TypeSafe ou OpenRouter. Elle reste désactivée jusqu’à votre accord explicite. Une clé valide et, selon votre compte, des crédits API sont nécessaires. L’extension ne fournit pas de crédits et les fournisseurs facturent leur propre usage.
+
+Le texte des posts, les citations présentes et votre définition sont transmis au fournisseur sélectionné. Avec OpenRouter, les demandes Jev sont acheminées vers TypeSafe. Les images et vidéos ne sont pas analysées ni envoyées.
+
+Le badge officiel « Made with AI » de X est reconnu localement et déclenche le tampon SLOP sans appel API. Une simple mention d’IA dans le texte ne déclenche pas cette règle. Seuls les libellés anglais et français pris en charge sont reconnus.
+
+Les scores ne prouvent pas l’utilisation d’une IA. Ce sont des estimations textuelles pouvant comporter des erreurs. L’option « Contexte insuffisant », désactivée par défaut, permet de ne pas noter certaines légendes médias courtes ou certains textes tronqués.
+
+Aucun compte Slop Detector à créer, aucune publicité et aucune télémétrie. Les clés, les réglages et les résultats sont conservés dans le stockage local de l’extension. Fonctionne uniquement sur x.com et twitter.com. Projet indépendant, non affilié à X.
+
+Les captures présentent l’interface avec des posts fictifs et des réponses simulées ; elles n’illustrent pas des résultats garantis du modèle.
+
+Site du projet
+https://github.com/itsaam/slop-detector
+
+Assistance
+https://github.com/itsaam/slop-detector/issues
+
+Confidentialité
+https://github.com/itsaam/slop-detector/blob/main/PRIVACY
+
+Objet unique
+Signaler et filtrer, à la demande de l’utilisateur, les posts génériques ou d’engagement-bait affichés sur X/Twitter selon une définition et un seuil configurables.
+
+Justification storage
+Conserver localement les clés API fournies par l’utilisateur, son accord d’analyse en ligne, ses réglages et un cache limité de résultats afin d’éviter les appels répétés. Les clés ne sont jamais injectées dans les pages web.
+
+Justification accès aux hôtes
+x.com et twitter.com : lire le texte des posts affichés et ajouter les indicateurs et le flou. api.typesafe.ai : envoyer les demandes Jev uniquement après accord, avec la clé TypeSafe. openrouter.ai : acheminer ces demandes via OpenRouter avec la clé correspondante. Aucun accès à d’autres sites.
+
+Code distant
+Aucun code distant. Le JavaScript de l’extension est inclus dans le paquet. Les API renvoient des données JSON de classification et non du code à exécuter.
+
+Instructions de test
+1. Installer l’extension, puis ouvrir son popup.
+2. Vérifier que l’analyse en ligne est désactivée par défaut.
+3. Pour la classification textuelle, choisir TypeSafe ou OpenRouter, fournir une clé du fournisseur disposant d’un accès Jev et de crédits, lire le texte de consentement, activer l’analyse et enregistrer. Aucune clé privée du mainteneur n’est incluse.
+4. Ouvrir x.com, se connecter avec son propre compte X si nécessaire, puis faire défiler des posts contenant du texte.
+5. Activer le flou, enregistrer et vérifier Afficher/Masquer sur un post signalé. Le seuil est configurable.
+6. Désactiver l’analyse en ligne et enregistrer : les nouveaux textes ne doivent plus être envoyés. La détection locale des badges de plateforme pris en charge reste disponible.
+7. Le bouton Tester envoie seulement un exemple synthétique au fournisseur sélectionné et peut être facturé. Il ne remplace pas l’accord d’analyse en ligne.
+
+Les comptes API des fournisseurs sont externes à l’extension. Leurs conditions d’accès et de facturation s’appliquent. Aucun compte Slop Detector ni abonnement supplémentaire n’est requis.
