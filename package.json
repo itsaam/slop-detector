@@ -5,7 +5,7 @@
   "description": "Text-based slop filtering for X with Jev.",
   "engines": { "node": ">=22" },
   "scripts": {
-    "test": "node tests/validate-extension.mjs && node tests/background.test.mjs && node tests/options.test.mjs",
+    "test": "node tests/validate-extension.mjs && node tests/background.test.mjs && node tests/options.test.mjs && node tests/package.test.mjs",
     "package": "node scripts/package.mjs"
   }
 }

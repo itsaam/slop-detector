@@ -47,6 +47,10 @@ npm run package
 
 The ZIP is written to `dist/` with `manifest.json` at its root. It contains only extension runtime files, not tests or documentation.
 
+Packaging checks verify reproducibility, the archive allowlist, matching source files, version consistency, and icon dimensions. Store listing text and demonstration images are kept separately in `store/` and never shipped in the extension.
+
 Browser regressions are in `tests/browser/`. Serve this directory with any local HTTP server, open the fixture, and run its checks. Provider responses are simulated; no key or credits are needed.
 
 Bug reports: [Issues](https://github.com/itsaam/slop-detector/issues). Please omit API keys, private posts, and other sensitive content.
+
+Changes are proposed through pull requests. Run the checks and relevant browser regressions before requesting review; do not include real credentials in fixtures or screenshots.
