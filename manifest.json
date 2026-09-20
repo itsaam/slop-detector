@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Slop Detector for X",
   "short_name": "Slop Detector",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Analyse les posts X avec Jev et signale le contenu generique ou engagement-bait.",
   "minimum_chrome_version": "120",
   "icons": {

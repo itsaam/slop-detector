@@ -33,6 +33,9 @@ while (zip.readUInt32LE(offset) === 0x04034b50) {
   const bytes = inflateRawSync(zip.subarray(start, start + compressedSize));
   assert.equal(bytes.length, size);
   assert.deepEqual(bytes, readFileSync(new URL(`../${name}`, import.meta.url)));
+  if (/\.(js|json|html)$/.test(name)) {
+    assert.doesNotMatch(bytes.toString(), /DEBUG_FORCE_ALL_SLOP|DEBUG-hover-a8ac|local-hover-test|TEST LOCAL/, `${name}: local diagnostics must not ship`);
+  }
   actual.push(name);
   offset = start + compressedSize;
 }
