@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Régression : flou sans flash</title>
+<link rel="stylesheet" href="../../../src/content.css?v=0.1.6">
+<style>
+  :root { color-scheme: dark; font: 16px/1.5 system-ui; }
+  body { max-width: 680px; margin: 30px auto; }
+  article { position: relative; border: 1px solid #536471; padding: 20px; }
+  [data-testid="tweetPhoto"] { background: #263541; padding: 60px 20px; }
+  pre { white-space: pre-wrap; }
+</style>
+<h1>Flou immédiat après recyclage</h1>
+<p>Test automatisé complémentaire, sans API. Ne remplace pas la validation dans le vrai fil X.</p>
+<button id="run">Exécuter</button>
+<pre id="results">Prêt</pre>
+<main id="posts"></main>
+<script src="flash.js"></script>
+<script src="../../../src/content.js?v=0.1.6"></script>
+</html>

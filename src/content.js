@@ -122,6 +122,13 @@
     observedAiLabels.set(article, data.aiLabel);
     observedGenerations.set(article, analysisGeneration);
     viewportObserver.unobserve(article);
+    // X remounts known posts while scrolling. Restore their verdict in this
+    // mutation delivery, before paint, instead of waiting for a new intersection.
+    const known = data.aiLabel ? AI_LABEL_RESULT : renderedResults.get(data.id);
+    if (known) {
+      renderResult(article, known);
+      return;
+    }
     viewportObserver.observe(article);
   }
 
@@ -289,6 +296,12 @@
     const uncertain = !platformSlop && (result.verdict === "uncertain" || result.score === null);
     const isSlop = !uncertain && (platformSlop || result.score >= settings.threshold);
     const shouldBlur = settings.blurEnabled && isSlop;
+    // Keep masking independent of the className strings owned/replaced by X.
+    if (shouldBlur) {
+      if (article.dataset.jevBlurred !== "true") article.dataset.jevBlurred = "true";
+    } else {
+      delete article.dataset.jevBlurred;
+    }
     setClass(article, "jev-slop-marked", isSlop);
     setClass(article, "jev-slop-blurred", shouldBlur);
     syncBlurTargets(article, shouldBlur);
@@ -447,6 +460,7 @@
     if (article) appliedResults.delete(article);
     article?.querySelector(':scope > .jev-stamp[data-jev-owned="true"]')?.remove();
     article?.classList.remove("jev-slop-marked", "jev-slop-blurred");
+    if (article) delete article.dataset.jevBlurred;
     article?.querySelectorAll(".jev-blur-target").forEach((node) => node.classList.remove("jev-blur-target"));
     slot.replaceChildren();
     delete slot.dataset.verdict;
@@ -462,6 +476,7 @@
     article.querySelector('.jev-result-slot[data-jev-owned="true"]')?.remove();
     article.classList.remove("jev-slop-blurred");
     article.classList.remove("jev-slop-marked");
+    delete article.dataset.jevBlurred;
     delete article.dataset.jevRevealed;
   }
 })();

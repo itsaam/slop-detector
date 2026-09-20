@@ -1,6 +1,6 @@
 {
   "name": "slop-detector",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "description": "Text-based slop filtering for X with Jev.",
   "engines": { "node": ">=22" },
